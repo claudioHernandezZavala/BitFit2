@@ -35,7 +35,7 @@ Here's a walkthrough of implemented user stories:
 
 ## Notes
 
-cannot initialize my database, new updates on my android studio keeps saying that there are missing libraries and dependencies and room library won't work, my build gradle keeps stopping crashing.
+cannot initialize my database, new updates on my android studio keeps saying that there are missing libraries and dependencies and room library won't work, my build gradle keeps crashing.
 Implentented UI but cannot initialize project correctly because of the library issues
 
 ## License
