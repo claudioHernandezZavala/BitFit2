@@ -2,7 +2,7 @@
 
 Submitted by: **Claudio Hernandez**
 
-*Bit fit** is a health metrics app that allows users to track ... [TODO] 
+*Bit fit** is a health metrics app that allows users to track the food and calories they consume
 
 Time spent: **9** hours spent in total
 
