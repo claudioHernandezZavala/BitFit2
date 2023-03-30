@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class addFood : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,14 +18,21 @@ class addFood : AppCompatActivity() {
             var fName =  findViewById<EditText>(R.id.foodnameedit)
             var fCalorie =  findViewById<EditText>(R.id.foodcalorieedit)
             if(fName.text.isNotBlank()&&fCalorie.text.isNotBlank()){
-                val intent =  Intent(this,MainActivity::class.java);
-//                MainActivity().foods.add(displayFood(fName.text.toString(),fCalorie.text.toString()))
-                intent.putExtra("foodName", fName.text.toString());
-                intent.putExtra("calories", fCalorie.text.toString());
-                setResult(RESULT_OK, intent);
+                lifecycleScope.launch(Dispatchers.IO) {
+                    //val memory = (application as LegDayApplication).db.legDayDao().getAll()
+                    //(application as LegDayApplication).db.legDayDao().deleteAll()
+                    (application as FoodApplication).db.foodDao().insertFood(
+                        FoodEntity(
+                            foodName = fName.text.toString(),
+                            calories = Integer.parseInt(fCalorie.text.toString())
 
-                finish();
+                        )
+                    )
+                }
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
             }
+
 
 
         })

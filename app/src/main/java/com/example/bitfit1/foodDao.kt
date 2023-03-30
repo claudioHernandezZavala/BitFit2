@@ -1,21 +1,21 @@
 package com.example.bitfit1
 
-import android.arch.persistence.room.Dao
-import android.arch.persistence.room.Insert
-import android.arch.persistence.room.Query
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface FoodDao{
     @Query("SELECT * FROM food")
-    fun getAll(): MutableList<displayFood>
+    fun getAll(): Flow<List<FoodEntity>>
     @Insert
-    fun insertAll(articles: List<displayFood>)
+    fun insertAll(foods: List<FoodEntity>)
 
     @Query("DELETE FROM food")
     fun deleteAll()
 
     @Insert
-    fun insertFood(food1: displayFood)
+    fun insertFood(food1:FoodEntity)
 
 }

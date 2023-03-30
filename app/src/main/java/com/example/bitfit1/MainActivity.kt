@@ -1,64 +1,57 @@
 package com.example.bitfit1
-
 import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-
-const val REQUEST_CODE = 0
-
+import com.example.bitfit1.databinding.ActivityMainBinding
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
-    lateinit var foods: MutableList<displayFood>
+    private val foods = mutableListOf<displayFood>()
+    private lateinit var foodRecyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var mainAddButton =  findViewById<Button>(R.id.mainbutton)
-        mainAddButton.setOnClickListener({
-            val intent = Intent(this, addFood::class.java)
+        val addToList = findViewById<Button>(R.id.mainbutton)
 
-            startActivityForResult(intent, REQUEST_CODE)
-        })
-        var foodrv =  findViewById<RecyclerView>(R.id.food_list)
 
-//        lifecycleScope.launch(IO) { {
-//            (application as FoodApplication).db.foodDao().deleteAll()
-//            (application as FoodApplication).db.foodDao().insertFood(displayFood("chocolate","500"))
-//        }
-        val foods = mutableListOf<displayFood>()
-//       val  foods =(application as FoodApplication).db.foodDao().getAll()
-        //create instance of adapter
-        val adapter = FoodAdapter(foods)
-         fun onActivityResult(
-            requestCode: Int, resultCode: Int,
-            data: Intent?
-        ) {
-            super.onActivityResult(requestCode, resultCode, data)
-            if (requestCode == REQUEST_CODE) {
-                if (resultCode == RESULT_OK) {
-                    if (data != null) {
-                        foods.add(displayFood(data.getStringExtra("foodName"),data.getStringExtra("calories")))
-                        adapter.notifyDataSetChanged()
-                    }
+        foodRecyclerView = findViewById(R.id.food_list)
 
+        // TODO: Set up ArticleAdapter with articles
+        val foodAdapter1 = foodAdapter( foods)
+        foodRecyclerView.adapter = foodAdapter1
+
+        //TODO: Review how this adds itemDecoration
+        foodRecyclerView.layoutManager = LinearLayoutManager(this).also {
+            val dividerItemDecoration = DividerItemDecoration(this, it.orientation)
+            foodRecyclerView.addItemDecoration(dividerItemDecoration)
+        }
+
+        lifecycleScope.launch {
+            (application as FoodApplication).db.foodDao().getAll().collect { databaseList ->
+                databaseList.map { entity ->
+                    displayFood(
+                        entity.foodName,
+                        entity.calories.toString(),
+
+                    )
+                }.also { mappedList ->
+                    foods.clear()
+                    foods.addAll(mappedList)
+                    foodAdapter1.notifyDataSetChanged()
                 }
             }
         }
 
-        foodrv.adapter =  adapter
-
-        foodrv.layoutManager = LinearLayoutManager(this)
-
-
-
-
-
-
+        addToList.setOnClickListener {
+            val intent = Intent(this, addFood::class.java)
+            startActivity(intent)
+        }
     }
-
 }
-

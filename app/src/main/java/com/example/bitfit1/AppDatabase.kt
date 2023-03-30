@@ -1,9 +1,9 @@
 package com.example.bitfit1
 
-import android.arch.persistence.room.Database
-import android.arch.persistence.room.Room
-import android.arch.persistence.room.RoomDatabase
 import android.content.Context
+import androidx.room.Database
+import androidx.room.Room
+import androidx.room.RoomDatabase
 
 @Database(entities = [FoodEntity::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
@@ -24,6 +24,6 @@ abstract class AppDatabase : RoomDatabase() {
             Room.databaseBuilder(
                 context.applicationContext,
                 AppDatabase::class.java, "food-db"
-            ).allowMainThreadQueries().build()
+            ).build()
     }
 }
