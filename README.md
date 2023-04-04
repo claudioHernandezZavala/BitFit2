@@ -1,43 +1,40 @@
-# Android Project 5 - *Bitfit*
+# Android Project 6 - *Bitfit 2*
 
-Submitted by: **Claudio Hernandez**
+Submitted by: *Claudio Hernandez**
 
-*Bit fit** is a health metrics app that allows users to track the food and calories they consume
+**Bit fit 2** is a health metrics app that allows users to track calories and has a small dashboard to check average,min and max 
 
-Time spent: **9** hours spent in total
+Time spent: **3** hours spent in total
 
 ## Required Features
 
 The following **required** functionality is completed:
 
-- [x] **At least one health metric is tracked (based on user input)**
-  - Chosen metric(s): `[Food and calories]`
-- [x] **There is a "create entry" UI that prompts users to make their daily entry**
-- [ ] **New entries are saved in a database and then updated in the RecyclerView**
-- [ ] **On application restart, previously entered entries are preserved (i.e., are *persistent*)**
- 
+- [x] **Use at least 2 Fragments**
+- [x] **Create a new dashboard fragment where users can see a summary of their entered data**
+- [x] **Use one of the Navigation UI Views (BottomNavigation, Drawer Layout, Top Bar) to move between the fragments**
+
 The following **optional** features are implemented:
 
-- [ ] **Create a UI for tracking averages and trends in metrics**
-- [ ] **Improve and customize the user interface through styling and coloring**
-- [ ] **Implement orientation responsivity**
-- [ ] **Add a daily photo feature**
+- [ ] **Add a more advanced UI (e.g: Graphing) for tracking trends in metrics**
+- [ ] **Implement daily notifications to prompt users to fill in their data**
+
 
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
-
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
-
-![bitift walkthorugh](https://user-images.githubusercontent.com/101302200/228133734-2040837b-5e7a-4012-b9ee-bbf723408f5a.gif)
+![bitift2 walkthorugh2](https://user-images.githubusercontent.com/101302200/229653695-3d52baf4-bbb2-48db-88dd-6bfbccd2a633.gif)
 
 
-## Notes
+<!-- Replace this with whatever GIF tool you used! -->
+GIF created with ...  
+<!-- Recommended tools:
+[Kap](https://getkap.co/) for macOS
+[ScreenToGif](https://www.screentogif.com/) for Windows
+[peek](https://github.com/phw/peek) for Linux. -->
 
-cannot initialize my database, new updates on my android studio keeps saying that there are missing libraries and dependencies and room library won't work, my build gradle keeps crashing.
-Implentented UI but cannot initialize project correctly because of the library issues.
-I will update it in the next 48 hours so it can be re evaluated 
+
 
 ## License
 
